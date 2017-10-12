@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<script src = "shared.js" ></script>
+    <link rel="stylesheet" type="text/css" href="cssfile.css">
+	<title>GROUPWORK</title>
+<head>
+
+<body>
+	<!-- header bar, user can select which student he is to submit assignment under -->
+	<div class="container">
+		<a href="#">Home</a>
+		<div class="students">
+			<button class="dropbtn" align="right" onclick="showStudents()">Students List</button>
+			<div class="students-content" id="myDropdown">
+				<a onclick = chgStudent(1)>Student 1</a>
+				<a onclick = chgStudent(2)>Student 2</a>
+				<a onclick = chgStudent(3)>Student 3</a>
+				<a onclick = chgStudent(4)>Student 4</a>
+			</div>
+		</div> 
+	</div>
+	
+	<div>
+		<h1>Submission Page</h1>
+    </div>
+	<div id = "clockdiv">
+	</div>
+    <div>
+        </br>
+    <span id = "deadline">Deadline: <span>
+    </div>
+	</br>
+	<div id = "stName">
+		Student 1:
+	</div>
+	<div>
+		<textarea id="myTextBox" cols="100" rows="20" placeholder = "Type here"></textarea>
+		</br>
+		</br>
+		</br>
+		<button id="button1" type="button" onclick = getData(stID)>Submit</button>
+		&nbsp;&nbsp;&nbsp;
+		<button id = "editButton" type = "button" onclick = enableEdit()  hidden = "hidden">Edit</button>
+		<button id="buttonMy1" type="button" onclick = getDataOutput(stID)>My Page</button>
+
+	</div>
+    </br></br>
+    <div>
+        <form>
+            Complete : 
+            </br>
+            <input type="checkbox" id="check1"> Student 1<br>
+            <input type="checkbox" id="check2"> Student 2<br>
+            <input type="checkbox" id="check3"> Student 3<br>
+            <input type="checkbox" id="check4"> Student 4<br>
+        </form>
+    </div>
+
+<script>
+	var stID = sessionStorage.getItem("stID") || 1;
+	document.getElementById("stName").innerHTML = "Student " + stID + ":";
+	
+    console.log(endDate);
+	initializeClock(stID);
+	//notification();
+	checkBox(stID);
+	checkSubmitted(stID);
+</script>
+
+</body>

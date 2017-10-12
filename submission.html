@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="cssfile.css">
+	<script src = "shared.js" ></script>
+	<script type = "text/javascript" src = "jspdf.min.js"></script>
+	<title>GROUPWORK</title>
+</head>
+<body>
+	<div class="container">
+		<a href="index.html">Home</a>
+		<div class="students">
+			<button class="dropbtn" align="right" onclick="showStudents()">Students List</button>
+			&emsp;&emsp;&emsp;
+			<div class="students-content" id="myDropdown">
+				<a onclick = chgStudent(1)>Student 1</a>
+				<a onclick = chgStudent(2)>Student 2</a>
+				<a onclick = chgStudent(3)>Student 3</a>
+				<a onclick = chgStudent(4)>Student 4</a>
+			</div>
+		</div> 
+		<a href = "javascript:localStorage.clear();location.reload();" align="right">Clear All History</a>
+	</div>
+
+    <div>
+        <form>
+            <textarea id="output" cols="50" rows="5" disabled = "disabled"></textarea>
+            <fieldset>
+                <legend id = "stName"> Student 1 </legend>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                Mark 1:
+                <input type="text" id="mark1">
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                Mark 2: 
+                <input type="text" id="mark2">
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                Mark 3: 
+                <input type="text" id="mark3">
+                </br></br>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                Mark 4: 
+                <input type="text" id="mark4">
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                Mark 5: 
+                <input type="text" id="mark5">   
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                Mark 6: 
+                <input type="text" id="mark6">   
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                </br></br>
+                <button type="button" onclick = "getMark(stID);">Calculate</button>
+                <div>
+                    </br>
+                    Total Mark : <span id = "outputMark"></span>
+                </div>
+                </br>
+                <button type="button" onclick = "demEnableButton(stID);">Enable Student 1 Edit</button>
+                &emsp;&emsp;&emsp;&emsp;
+                <button type="button" onclick = "demDisableButton(stID);">Disable Student 1 Edit</button>
+                <button id="buttonPublish" type="button" onclick = "location.href = 'mark.html'">Publish marks</button>
+				<button onclick = "genPDF(stID);" align="right">Download as PDF</button>
+<input type="date" id="mydate" value="2014-02-09">
+<button onclick="setDate()">Set Date</button>
+            </fieldset>	
+        </form>
+	</div>
+    
+	<script>
+		var stID = sessionStorage.getItem("stID") || 1;
+		document.getElementById("output").innerHTML = localStorage.getItem("data"+stID);
+		document.getElementById("stName").innerHTML = "Student " + stID + ":";
+		var markID = "myMarks" + stID;
+		var markObj;
+		if (localStorage.getItem(markID) !== null) {
+			markObj = JSON.parse(localStorage.getItem(markID));
+			document.getElementById("mark1").value = markObj.mark1;
+			document.getElementById("mark2").value = markObj.mark2;
+			document.getElementById("mark3").value = markObj.mark3;
+			document.getElementById("mark4").value = markObj.mark4;
+			document.getElementById("mark5").value = markObj.mark5;
+			document.getElementById("mark6").value = markObj.mark6;
+			document.getElementById("outputMark").value = markObj.total || 0;
+		}
+        
+	</script>
+	
+</body>
